@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>一話</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    background:#f7f7f7;
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    color:#222;
+    line-height:1.8;
+}
+
+/* 本文エリア */
+.wrapper{
+    max-width:720px;
+    margin:auto;
+    padding:40px 20px;
+    background:white;
+    min-height:100vh;
+}
+
+/* タイトル */
+h1{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+/* 小説本文 */
+.novel{
+    font-size:18px;
+    letter-spacing:0.03em;
+}
+
+/* スマホ対応 */
+@media (max-width:768px){
+    .wrapper{
+        padding:25px 15px;
+    }
+
+    .novel{
+        font-size:17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<h1>第一話　あの子の秘密</h1>
+
+<div class="novel">
+　
+</div>
+
+</div>
+
+</body>
+</html>
