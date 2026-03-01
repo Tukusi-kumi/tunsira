@@ -10,26 +10,81 @@
 body{
     font-family:"MS PGothic", sans-serif;
     text-align:center;
+    margin:0;
+    background: radial-gradient(circle at top, #fff7fb, #ffeef0, #f5f5ff);
 }
 
+/* 全体のカード */
 .wrapper{
     width:90%;
     max-width:800px;
-    margin:auto;
+    margin:40px auto;
     background:white;
-    padding:20px;
-    border:2px solid #ccc;
+    padding:20px 20px 28px;
+    border:2px solid #ffc9dd;
+    border-radius:12px;
+    box-shadow:0 8px 18px rgba(0,0,0,0.08);
+    opacity:0;
+    transform:translateY(10px);
+    animation: fadeInUp 0.7s ease-out forwards;
 }
 
+/* ふわっと表示用 */
+.fade-in{
+    opacity:0;
+    transform:translateY(6px);
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+.delay-1{ animation-delay:0.15s; }
+.delay-2{ animation-delay:0.30s; }
+.delay-3{ animation-delay:0.45s; }
+
+@keyframes fadeInUp{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* メニュー風リンク */
+.menu{
+    margin-top:16px;
+}
 .menu a{
-    margin:10px;
+    display:inline-block;
+    margin:8px 10px;
+    padding:8px 18px;
     text-decoration:none;
     color:#003399;
     font-size:14px;
+    border-radius:999px;
+    border:1px solid #ffd3e0;
+    background:#ffffff;
+    box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    transition:transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
+}
+.menu a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 12px rgba(0,0,0,0.14);
+    background:#fff5fa;
 }
 
+/* 見出し */
 h1{
-    border-bottom:2px solid #ccc;
+    border-bottom:2px solid #ffc9dd;
+    padding-bottom:8px;
+    margin-top:0;
+}
+
+/* メッセージ用 */
+.message{
+    font-size:14px;
+    color:#555;
+    margin-top:10px;
 }
 </style>
 
@@ -39,13 +94,21 @@ h1{
 
 <div class="wrapper">
 
-<h1>ツンしらホームページ</h1>
+  <h1 class="fade-in">ツンしらホームページ</h1>
 
-<marquee>こんにちは『ツンしら』のホームページです。</marquee>
+  <p class="fade-in delay-1 message">
+    こんにちは『ツンしら』のホームページです。
+  </p>
 
-<p>ツンしらに関することを載せていきます。</p>
-<a href="/tunsira/Anoko.html">ツンしらを読む</a> <p></p>
-<a href="/tunsira/ura.html">ツンしらウラ情報を読む</a>    
+  <p class="fade-in delay-2">
+    ツンしらに関することを載せていきます。
+  </p>
+
+  <div class="menu fade-in delay-3">
+    <a href="/tunsira/Anoko.html">ツンしらを読む</a>
+    <a href="/tunsira/ura.html">ツンしらウラ情報を読む</a>
+  </div>
+
 </div>
 
 </body>
