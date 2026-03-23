@@ -1,77 +1,180 @@
+さっきのサイトを
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    h1 {
-      font-family: "MS PGothic", sans-serif;
-      text-align: center;
-      border-bottom: 10px solid #ccc;
-      font-size: 30px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>ツンしらホームページ</title>
+
+<style>
+*{ box-sizing:border-box; }
+
+body{
+    font-family:"MS PGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+    text-align:center;
+    margin:0;
+    padding:0;
+    background: radial-gradient(circle at top, #fff7fb, #ffeef0, #f5f5ff);
+    min-height:100vh;
+    -webkit-text-size-adjust:100%;
+}
+
+/* ===== ロード画面（1秒表示） ===== */
+.loader-overlay{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg, #fff5fa 0%, #ffe8f0 50%, #f0e8ff 100%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    transition:opacity 0.6s ease-out;
+}
+.loader-overlay.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+.loader-text{
+    font-size:clamp(16px, 4.5vw, 18px);
+    color:#663366;
+    margin-top:16px;
+    letter-spacing:0.1em;
+}
+
+.loader-spinner{
+    width:40px;
+    height:40px;
+    border:3px solid #ffc9dd;
+    border-top-color:#cc6699;
+    border-radius:50%;
+    animation:spin 0.8s linear infinite;
+}
+@keyframes spin{ to{ transform:rotate(360deg); } }
+
+.main-content{
+    opacity:0;
+    transition:opacity 0.5s ease-out;
+}
+.main-content.show{ opacity:1; }
+
+/* ===== メイン・スマホ対応 ===== */
+.wrapper{
+    width:90%;
+    max-width:800px;
+    margin:24px auto;
+    padding:clamp(16px, 4vw, 28px);
+    background:white;
+    border:2px solid #ffc9dd;
+    border-radius:12px;
+    box-shadow:0 8px 18px rgba(0,0,0,0.08);
+    opacity:0;
+    transform:translateY(10px);
+    animation:fadeInUp 0.7s ease-out 0.1s forwards;
+}
+
+@media (max-width:480px){
+    .wrapper{
+        width:94%;
+        margin:16px auto;
+        padding:20px 16px;
     }
-    .intro {
-      text-align: center;
-      margin: 1em 0;
-    }
-    .links {
-      text-align: center;
-      margin: 1.5em 0;
-    }
-    .links a {
-      display: inline-block;
-      margin: 0 0.5em;
-      padding: 0.5em 1em;
-    }
-    .typewriter-cursor::after {
-      content: "|";
-      animation: blink 0.7s step-end infinite;
-    }
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-  </style>
-  <title>Story</title>
+}
+
+.fade-in{
+    opacity:0;
+    transform:translateY(6px);
+    animation:fadeInUp 0.6s ease-out forwards;
+}
+.delay-1{ animation-delay:0.15s; }
+.delay-2{ animation-delay:0.30s; }
+.delay-3{ animation-delay:0.45s; }
+
+@keyframes fadeInUp{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+/* リンク＝タップしやすい大きさに */
+.menu{ margin-top:20px; }
+.menu a{
+    display:inline-block;
+    margin:10px 8px;
+    padding:clamp(12px, 3vw, 14px) clamp(20px, 5vw, 24px);
+    min-height:44px;
+    line-height:1.4;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#003399;
+    font-size:clamp(14px, 3.8vw, 16px);
+    border-radius:999px;
+    border:1px solid #ffd3e0;
+    background:#ffffff;
+    box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    transition:transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
+    -webkit-tap-highlight-color:transparent;
+}
+.menu a:hover,
+.menu a:active{
+    transform:translateY(-2px);
+    box-shadow:0 6px 12px rgba(0,0,0,0.14);
+    background:#fff5fa;
+}
+
+h1{
+    border-bottom:2px solid #ffc9dd;
+    padding-bottom:8px;
+    margin-top:0;
+    font-size:clamp(20px, 5.5vw, 28px);
+}
+
+.message{
+    font-size:clamp(14px, 3.8vw, 16px);
+    color:#555;
+    margin-top:10px;
+    line-height:1.6;
+}
+
+p{ line-height:1.6; }
+</style>
+
 </head>
+
 <body>
-  <h1 id="title" class="typewriter-cursor"></h1>
-  <p class="intro"><span id="intro" class="typewriter-cursor"></span></p>
-  <nav class="links">
-    <a href="/tunsira/himitu.html">一話</a>
-    <a href="/tunsira/kaeri.html">二話</a>
-    <a href="/tunsira/date.html">三話</a>
-    <a href="/tunsira/sekigae.html">四話</a>
-    <a href="/tunsira/book.html">五話</a>
-  </nav>
 
-  <script>
-    (function () {
-      var titleText = "ツンしらの各話のリンク集です。";
-      var introText = "好きなのを見てください";
-      var speed = 80;
-      var cursorSpeed = 0.7;
+<div class="loader-overlay" id="loader">
+  <div class="loader-spinner"></div>
+  <p class="loader-text">読み込み中...</p>
+</div>
 
-      function typeWriter(el, text, delay, callback) {
-        el.textContent = "";
-        el.classList.add("typewriter-cursor");
-        var i = 0;
-        function type() {
-          if (i < text.length) {
-            el.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-          } else {
-            el.classList.remove("typewriter-cursor");
-            if (callback) setTimeout(callback, 300);
-          }
-        }
-        setTimeout(type, delay);
-      }
+<div class="main-content" id="main">
+  <div class="wrapper">
+    <h1 class="fade-in">ツンしらホームページ</h1>
+    <p class="fade-in delay-1 message">こんにちは『ツンしら』のホームページです。</p>
+    <p class="fade-in delay-2">ツンしらに関することを載せていきます。</p>
+    <div class="menu fade-in delay-3">
+      <a href="/tunsira/Anoko.html">ツンしらを読む</a>
+      <a href="/tunsira/ura.html">ツンしらウラ情報を読む</a>
+    </div>
+  </div>
+</div>
 
-      typeWriter(document.getElementById("title"), titleText, 0, function () {
-        typeWriter(document.getElementById("intro"), introText, 0);
-      });
-    })();
-  </script>
+<script>
+(function(){
+  var loader = document.getElementById('loader');
+  var main = document.getElementById('main');
+  setTimeout(function(){
+    loader.classList.add('hide');
+    main.classList.add('show');
+  }, 600);
+})();
+</script>
+
 </body>
 </html>
