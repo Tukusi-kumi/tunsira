@@ -230,8 +230,8 @@
         loader.classList.add('hide');
         main.classList.add('show');
         
-        var titleText = "質問タイム";
-        var questionText = "あなたは〇〇ですか？";
+        var titleText = "質問です。";
+        var questionText = "あなたは15歳以上ですか？";
         var speed = 80;
 
         function typeWriter(el, text, delay, callback) {
@@ -270,24 +270,24 @@
       if (answer === 'yes') {
         yesBtn.style.transform = 'scale(1.05)';
         yesBtn.style.boxShadow = '0 8px 16px rgba(255, 20, 147, 0.3)';
-        resultDiv.textContent = '「はい」と答えましたね！';
+        resultDiv.textContent = 'へぇーそうなんだ';
         resultDiv.style.borderColor = '#ff69b4';
         resultDiv.style.background = '#fff0f5';
         
         // 1秒後にリンク先へ移動
         setTimeout(function() {
-          window.location.href = '/tunsira/himitu.html';
+          window.location.href = '/tunsira/ie.html';
         }, 1000);
       } else {
         noBtn.style.transform = 'scale(1.05)';
         noBtn.style.boxShadow = '0 8px 16px rgba(70, 130, 180, 0.3)';
-        resultDiv.textContent = '「いいえ」と答えましたね！';
+        resultDiv.textContent = 'お、おう';
         resultDiv.style.borderColor = '#87ceeb';
         resultDiv.style.background = '#f0f8ff';
         
         // 1秒後にリンク先へ移動
         setTimeout(function() {
-          window.location.href = '/tunsira/kaeri.html';
+          window.location.href = '/tunsira/.html';
         }, 1000);
       }
       
