@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>えぇ（困惑）</title>
+    <title>禁</title>
 </head>
 <body>
 
-    <audio id="myAudio" src="my.wav" loop controls></audio>
-    
-    <script>
-        // アラートを出す
-        alert("何もないよんっ");
+    <audio id="bgm" src="my.wav" loop></audio>
 
-        // アラートを閉じた後に音声を再生する
-        const audio = document.getElementById('myAudio');
-        audio.play().catch(error => {
-            console.log("自動再生がブロックされました。再生ボタンを押してください。");
-        });
+    <script>
+        // 1. まずアラートを表示
+        alert("えぇ（困惑）");
+
+        // 2. OKが押されたら、下のコードが実行されて音が鳴る
+        var music = document.getElementById("bgm");
+        music.volume = 0.3; // 音量を少し下げて再生（0.0 〜 1.0）
+        music.play();
     </script>
 
 </body>
