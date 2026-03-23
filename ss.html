@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>ツンしら</title>
+
+<style>
+*{ box-sizing:border-box; }
+
+body{
+    font-family:"MS PGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+    text-align:center;
+    margin:0;
+    padding:0;
+    background: radial-gradient(circle at top, #fff7fb, #ffeef0, #f5f5ff);
+    min-height:100vh;
+    -webkit-text-size-adjust:100%;
+}
+
+/* ===== ロード画面 ===== */
+.loader-overlay{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg, #fff5fa 0%, #ffe8f0 50%, #f0e8ff 100%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    transition:opacity 0.6s ease-out;
+}
+.loader-overlay.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+.loader-text{
+    font-size:clamp(16px, 4.5vw, 18px);
+    color:#cc6699;
+    margin-top:16px;
+    letter-spacing:0.1em;
+}
+
+.loader-spinner{
+    width:40px;
+    height:40px;
+    border:3px solid #ffc9dd;
+    border-top-color:#cc6699;
+    border-radius:50%;
+    animation:spin 0.8s linear infinite;
+}
+@keyframes spin{ to{ transform:rotate(360deg); } }
+
+.main-content{
+    opacity:0;
+    transition:opacity 0.5s ease-out;
+}
+.main-content.show{ opacity:1; }
+
+/* ===== 共通スタイル ===== */
+.wrapper{
+    width:90%;
+    max-width:800px;
+    margin:24px auto;
+    padding:clamp(16px, 4vw, 28px);
+    background:white;
+    border:2px solid #ffc9dd;
+    border-radius:12px;
+    box-shadow:0 8px 18px rgba(204, 102, 153, 0.08);
+    opacity:0;
+    transform:translateY(10px);
+    animation:fadeInUp 0.7s ease-out 0.1s forwards;
+}
+
+@media (max-width:480px){
+    .wrapper{
+        width:94%;
+        margin:16px auto;
+        padding:20px 16px;
+    }
+}
+
+.fade-in{
+    opacity:0;
+    transform:translateY(6px);
+    animation:fadeInUp 0.6s ease-out forwards;
+}
+.delay-1{ animation-delay:0.15s; }
+.delay-2{ animation-delay:0.30s; }
+.delay-3{ animation-delay:0.45s; }
+
+@keyframes fadeInUp{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+h1{
+    border-bottom:10px solid #ffc9dd;
+    padding-bottom:8px;
+    margin-top:0;
+    font-size:clamp(20px, 5.5vw, 28px);
+    color:#333;
+}
+
+.message, .intro{
+    font-size:clamp(14px, 3.8vw, 16px);
+    color:#555;
+    margin-top:10px;
+    line-height:1.6;
+}
+
+p{ line-height:1.6; }
+
+/* リンクスタイル */
+.menu, .links{
+    margin-top:20px;
+    text-align:center;
+}
+
+.menu a, .links a{
+    display:inline-block;
+    margin:10px 8px;
+    padding:clamp(12px, 3vw, 14px) clamp(20px, 5vw, 24px);
+    min-height:44px;
+    line-height:1.4;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#cc6699;
+    font-size:clamp(14px, 3.8vw, 16px);
+    border-radius:999px;
+    border:1px solid #ffc9dd;
+    background:#ffffff;
+    box-shadow:0 2px 6px rgba(204, 102, 153, 0.06);
+    transition:transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
+    -webkit-tap-highlight-color:transparent;
+    cursor:pointer;
+}
+
+.menu a:hover, .menu a:active,
+.links a:hover, .links a:active{
+    transform:translateY(-2px);
+    box-shadow:0 6px 12px rgba(204, 102, 153, 0.14);
+    background:#fff5fa;
+}
+
+/* ナビゲーション */
+.nav-buttons{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:1000;
+}
+
+.nav-btn{
+    padding:8px 16px;
+    margin:0 4px;
+    background:white;
+    border:2px solid #ffc9dd;
+    border-radius:20px;
+    color:#cc6699;
+    text-decoration:none;
+    font-size:14px;
+    transition:all 0.3s ease;
+    cursor:pointer;
+}
+
+.nav-btn:hover, .nav-btn.active{
+    background:#ffc9dd;
+    color:white;
+}
+
+/* ページ切り替え */
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* タイプライター効果 */
+.typewriter-cursor::after {
+    content: "|";
+    animation: blink 0.7s step-end infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+@media (max-width:480px){
+    .nav-buttons{
+        top:10px;
+        right:10px;
+    }
+    .nav-btn{
+        padding:6px 12px;
+        font-size:12px;
+        margin:0 2px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="loader-overlay" id="loader">
+  <div class="loader-spinner"></div>
+  <p class="loader-text">読み込み中...</p>
+</div>
+
+<!-- ナビゲーションボタン -->
+
+<!-- 音声 -->
+<audio id="seAudio" preload="auto">
+    <source src="se.wav" type="audio/mpeg">
+</audio>
+
+<!-- メインコンテンツ -->
+<div class="main-content" id="main">
+  
+  <!-- ホームページ -->
+  <div id="homePage" class="page active">
+    <div class="wrapper">
+      <h1 id="homeTitle" class="fade-in typewriter-cursor"></h1>
+      <p id="homeIntro" class="fade-in delay-1 message typewriter-cursor"></p>
+      <p class="fade-in delay-2">ツンしらに関することを載せていきます。</p>
+      <div class="menu fade-in delay-3">
+        <a href="/tunsira/Anoko.html">ツンしらを読む</a>
+        <a href="/tunsira/ura.html">ツンしらウラ情報を読む</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+(function(){
+  var loader = document.getElementById('loader');
+  var main = document.getElementById('main');
+  var seAudio = document.getElementById('seAudio');
+  var audioPlayed = false;
+  
+  // 音声再生関数
+  function playSE() {
+    if (audioPlayed) return;
+    audioPlayed = true;
+    
+    seAudio.volume = 0.3;
+    seAudio.play().catch(function(error) {
+      console.log('音声再生がブロックされました:', error);
+      document.addEventListener('click', function playOnClick() {
+        if (!audioPlayed) {
+          seAudio.play().catch(function(e) {
+            console.log('音声再生に失敗しました:', e);
+          });
+          audioPlayed = true;
+        }
+        document.removeEventListener('click', playOnClick);
+      }, { once: true });
+    });
+  }
+  
+  // ページ切り替え関数
+  window.showPage = function(pageName) {
+    // すべてのページを非表示
+    document.querySelectorAll('.page').forEach(page => {
+      page.classList.remove('active');
+    });
+    
+    // すべてのボタンからactiveクラスを削除
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    
+    // 指定ページを表示
+    document.getElementById(pageName + 'Page').classList.add('active');
+    
+    // 対応ボタンをアクティブ化
+    event.target.classList.add('active');
+    
+    // ページ切り替え時にタイプライター効果を実行
+    if (pageName === 'home') {
+      typeWriterEffect('home');
+    } else if (pageName === 'links') {
+      typeWriterEffect('links');
+    }
+  };
+  
+  // タイプライター効果
+  function typeWriterEffect(page) {
+    var titleText, introText;
+    
+    if (page === 'home') {
+      titleText = "超短編小説集";
+      introText = "こんにちは";
+      var titleEl = document.getElementById('homeTitle');
+      var introEl = document.getElementById('homeIntro');
+    } else if (page === 'links') {
+      titleText = "超短編集です。すごく、すごく短いです。";
+      introText = "好きなのを見てください";
+      var titleEl = document.getElementById('linksTitle');
+      var introEl = document.getElementById('linksIntro');
+    }
+    
+    var speed = 80;
+    
+    function typeWriter(el, text, delay, callback) {
+      el.textContent = "";
+      el.classList.add("typewriter-cursor");
+      var i = 0;
+      function type() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        } else {
+          el.classList.remove("typewriter-cursor");
+          if (callback) setTimeout(callback, 300);
+        }
+      }
+      setTimeout(type, delay);
+    }
+    
+    typeWriter(titleEl, titleText, 0, function () {
+      typeWriter(introEl, introText, 0);
+    });
+  }
+  
+  // 初期化
+  setTimeout(function(){
+    loader.classList.add('hide');
+    main.classList.add('show');
+    
+    // 音声再生
+    playSE();
+    
+    // ホームページのタイプライター効果を開始
+    typeWriterEffect('home');
+  }, 600);
+})();
+</script>
+
+</body>
+</html>
