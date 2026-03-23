@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
+    <meta charset="UTF-8">
     <title>えぇ（困惑）</title>
 </head>
 <body>
 
-    <audio src="my.wav" controls loop>
-  お使いのブラウザは audio 要素をサポートしていません。
-</audio>
+    <audio id="myAudio" src="my.wav" loop controls></audio>
     
     <script>
+        // アラートを出す
         alert("何もないよんっ");
+
+        // アラートを閉じた後に音声を再生する
+        const audio = document.getElementById('myAudio');
+        audio.play().catch(error => {
+            console.log("自動再生がブロックされました。再生ボタンを押してください。");
+        });
     </script>
 
 </body>
