@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <style>
+    *{ box-sizing:border-box; }
+
+    body{
+      font-family:"MS PGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+      text-align:center;
+      margin:0;
+      padding:0;
+      background: radial-gradient(circle at top, #fff7fb, #ffeef0, #f5f5ff);
+      min-height:100vh;
+      -webkit-text-size-adjust:100%;
+    }
+
+    /* ===== ロード画面 ===== */
+    .loader-overlay{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      background:linear-gradient(135deg, #fff5fa 0%, #ffe8f0 50%, #f0e8ff 100%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      transition:opacity 0.6s ease-out;
+    }
+    .loader-overlay.hide{
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .loader-text{
+      font-size:clamp(16px, 4.5vw, 18px);
+      color:#cc6699;
+      margin-top:16px;
+      letter-spacing:0.1em;
+    }
+
+    .loader-spinner{
+      width:40px;
+      height:40px;
+      border:3px solid #ffc9dd;
+      border-top-color:#cc6699;
+      border-radius:50%;
+      animation:spin 0.8s linear infinite;
+    }
+    @keyframes spin{ to{ transform:rotate(360deg); } }
+
+    .main-content{
+      opacity:0;
+      transition:opacity 0.5s ease-out;
+    }
+    .main-content.show{ opacity:1; }
+
+    .wrapper{
+      width:90%;
+      max-width:800px;
+      margin:24px auto;
+      padding:clamp(16px, 4vw, 28px);
+      background:white;
+      border:2px solid #ffc9dd;
+      border-radius:12px;
+      box-shadow:0 8px 18px rgba(204, 102, 153, 0.08);
+      opacity:0;
+      transform:translateY(10px);
+      animation:fadeInUp 0.7s ease-out 0.1s forwards;
+    }
+
+    @media (max-width:480px){
+      .wrapper{
+        width:94%;
+        margin:16px auto;
+        padding:20px 16px;
+      }
+    }
+
+    .fade-in{
+      opacity:0;
+      transform:translateY(6px);
+      animation:fadeInUp 0.6s ease-out forwards;
+    }
+    .delay-1{ animation-delay:0.15s; }
+    .delay-2{ animation-delay:0.30s; }
+    .delay-3{ animation-delay:0.45s; }
+
+    @keyframes fadeInUp{
+      from{ opacity:0; transform:translateY(10px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    h1{
+      border-bottom:2px solid #ffc9dd;
+      padding-bottom:8px;
+      margin-top:0;
+      font-size:clamp(20px, 5.5vw, 28px);
+    }
+
+    .contact-intro{
+      font-size:clamp(14px, 3.8vw, 16px);
+      color:#555;
+      margin:20px 0;
+      line-height:1.6;
+    }
+
+    .contact-form{
+      text-align:left;
+      margin:20px 0;
+    }
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    .form-group label{
+      display:block;
+      font-weight:bold;
+      color:#cc6699;
+      margin-bottom:8px;
+      font-size:clamp(14px, 3.8vw, 16px);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select{
+      width:100%;
+      padding:12px;
+      border:2px solid #ffc9dd;
+      border-radius:8px;
+      font-size:clamp(14px, 3.8vw, 16px);
+      font-family:"MS PGothic", "Hiragino Kaku Gothic ProN", sans-serif;
+      background:#fff9fc;
+      transition:border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus{
+      outline:none;
+      border-color:#cc6699;
+      background:#ffffff;
+    }
+
+    .form-group textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+
+    .required{
+      color:#ff6b6b;
+      margin-left:4px;
+    }
+
+    .submit-btn{
+      background:linear-gradient(135deg, #ffc9dd, #cc6699);
+      color:white;
+      border:none;
+      padding:14px 32px;
+      font-size:clamp(16px, 4.2vw, 18px);
+      border-radius:999px;
+      cursor:pointer;
+      transition:transform 0.15s ease-out, box-shadow 0.15s ease-out;
+      box-shadow:0 4px 12px rgba(204, 102, 153, 0.2);
+      font-weight:bold;
+    }
+
+    .submit-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 16px rgba(204, 102, 153, 0.3);
+    }
+
+    .submit-btn:active{
+      transform:translateY(0);
+    }
+
+    .contact-info{
+      background:#fff9fc;
+      padding:20px;
+      border-radius:8px;
+      border:1px solid #ffc9dd;
+      margin:20px 0;
+    }
+
+    .contact-info h3{
+      color:#cc6699;
+      margin-top:0;
+      margin-bottom:12px;
+      font-size:clamp(16px, 4.2vw, 18px);
+    }
+
+    .contact-info p{
+      margin:8px 0;
+      font-size:clamp(14px, 3.8vw, 16px);
+      color:#555;
+      line-height:1.6;
+    }
+
+    .menu{
+      margin-top:30px;
+      text-align:center;
+    }
+
+    .menu a{
+      display:inline-block;
+      margin:10px 8px;
+      padding:clamp(12px, 3vw, 14px) clamp(20px, 5vw, 24px);
+      min-height:44px;
+      line-height:1.4;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      color:#003399;
+      font-size:clamp(14px, 3.8vw, 16px);
+      border-radius:999px;
+      border:1px solid #ffd3e0;
+      background:#ffffff;
+      box-shadow:0 2px 6px rgba(0,0,0,0.06);
+      transition:transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .menu a:hover,
+    .menu a:active{
+      transform:translateY(-2px);
+      box-shadow:0 6px 12px rgba(0,0,0,0.14);
+      background:#fff5fa;
+    }
+
+    .success-message,
+    .error-message{
+      padding:12px;
+      border-radius:8px;
+      margin:16px 0;
+      font-size:clamp(14px, 3.8vw, 16px);
+      display:none;
+    }
+
+    .success-message{
+      background:#d4edda;
+      border:1px solid #c3e6cb;
+      color:#155724;
+    }
+
+    .error-message{
+      background:#f8d7da;
+      border:1px solid #f5c6cb;
+      color:#721c24;
+    }
+  </style>
+  <title>お問い合わせ</title>
+</head>
+<body>
+  <div class="loader-overlay" id="loader">
+    <div class="loader-spinner"></div>
+    <p class="loader-text">読み込み中...</p>
+  </div>
+
+  <div class="main-content" id="main">
+    <div class="wrapper">
+      <h1 class="fade-in">お問い合わせ</h1>
+      
+      <p class="contact-intro fade-in delay-1">
+        ツンしらへのご意見・ご要望・お問い合わせはこちらからどうぞ。<br>
+        別に…あなたからの連絡を待ってるわけじゃないんだからね！
+      </p>
+
+      <div class="success-message" id="successMessage">
+        メッセージを送信しました！…まあ、ありがたく思っておきなさい。
+      </div>
+
+      <div class="error-message" id="errorMessage">
+        送信に失敗しました…もう一度やり直して。
+      </div>
+
+      <form class="contact-form fade-in delay-2" id="contactForm">
+        <div class="form-group">
+          <label for="name">お名前<span class="required">*</span></label>
+          <input type="text" id="name" name="name" required placeholder例）山田太郎">
+        </div>
+
+        <div class="form-group">
+          <label for="email">メールアドレス<span class="required">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="例）example@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="subject">件名</label>
+          <select id="subject" name="subject">
+            <option value="">選択してください</option>
+            <option value="opinion">ご意見</option>
+            <option value="request">ご要望</option>
+            <option value="question">お問い合わせ</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">メッセージ<span class="required">*</span></label>
+          <textarea id="message" name="message" required placeholder="ここにメッセージを入力してください…"></textarea>
+        </div>
+
+        <div class="form-group" style="text-align: center;">
+          <button type="submit" class="submit-btn">送信する</button>
+        </div>
+      </form>
+
+      <div class="contact-info fade-in delay-3">
+        <h3>連絡先情報</h3>
+        <p><strong>返信までの時間：</strong>通常2〜3日以内</p>
+        <p><strong>注意事項：</strong>悪質な内容や迷惑メッセージは無視します</p>
+        <p><strong>個人情報：</strong>いただいた情報は目的外で使用しません</p>
+        <p style="margin-top: 12px; font-style: italic;">
+          …まあ、真面目に対応してあげるから。期待しないでね！
+        </p>
+      </div>
+
+      <div class="menu fade-in delay-3">
+        <a href="index.html">ホームに戻る</a>
+        <a href="profile.html">自己紹介</a>
+        <a href="stories.html">ツンしらを読む</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      var loader = document.getElementById('loader');
+      var main = document.getElementById('main');
+      var form = document.getElementById('contactForm');
+      var successMessage = document.getElementById('successMessage');
+      var errorMessage = document.getElementById('errorMessage');
+
+      setTimeout(function(){
+        loader.classList.add('hide');
+        main.classList.add('show');
+      }, 600);
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // フォームデータの取得
+        var formData = new FormData(form);
+        var name = formData.get('name');
+        var email = formData.get('email');
+        var subject = formData.get('subject');
+        var message = formData.get('message');
+
+        // 簡単なバリデーション
+        if (!name || !email || !message) {
+          errorMessage.style.display = 'block';
+          successMessage.style.display = 'none';
+          return;
+        }
+
+        // 実際の送信処理（ここではデモとして成功をシミュレート）
+        setTimeout(function() {
+          // 成功メッセージを表示
+          successMessage.style.display = 'block';
+          errorMessage.style.display = 'none';
+          
+          // フォームをリセット
+          form.reset();
+          
+          // 3秒後に成功メッセージを非表示
+          setTimeout(function() {
+            successMessage.style.display = 'none';
+          }, 3000);
+        }, 500);
+      });
+    })();
+  </script>
+</body>
+</html>
