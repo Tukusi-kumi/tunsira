@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-anime bg-retro-light text-retro-dark;
+    background-image: 
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 20, 147, 0.03) 2px, rgba(255, 20, 147, 0.03) 4px),
+      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 20, 147, 0.03) 2px, rgba(255, 20, 147, 0.03) 4px);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .retro-gradient {
+    background: linear-gradient(45deg, #FF1493, #FF69B4, #FFB6C1);
+    background-size: 200% 200%;
+    animation: rainbow 3s linear infinite;
+  }
+  
+  .retro-card {
+    @apply bg-white border-4 border-retro-primary rounded-none shadow-lg;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+  }
+  
+  .retro-button {
+    @apply bg-retro-primary text-white font-bold py-3 px-6 border-4 border-retro-dark rounded-none;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+  }
+  
+  .retro-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+  }
+  
+  .retro-title {
+    @apply text-4xl md:text-6xl font-black text-retro-primary;
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+    letter-spacing: 2px;
+  }
+  
+  .retro-section {
+    @apply py-16 px-4 md:px-8;
+    border-top: 4px dotted retro-primary;
+    border-bottom: 4px dotted retro-primary;
+  }
+  
+  .retro-marquee {
+    @apply bg-retro-primary text-white py-2 overflow-hidden;
+  }
+  
+  .retro-blink {
+    animation: blink 1s infinite;
+  }
+}
