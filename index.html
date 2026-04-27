@@ -1,1 +1,209 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"/><link rel="icon" href="/tunsira/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="公式アニメサイト - 最新情報、キャラクター、エピソードをご紹介"/><link rel="apple-touch-icon" href="/tunsira/logo192.png"/><link rel="manifest" href="/tunsira/manifest.json"/><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet"><title>アニメ公式サイト</title><script defer="defer" src="/tunsira/static/js/main.24f7c6c3.js"></script><link href="/tunsira/static/css/main.3aed97ec.css" rel="stylesheet"></head><body><noscript>JavaScriptを有効にしてこのサイトをご覧ください。</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ツンしら公式サイト</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen bg-retro-light">
+  <!-- Retro Marquee Header -->
+  <div class="retro-marquee">
+    <div class="animate-marquee whitespace-nowrap">
+      <span class="mx-8">🌸 ツンしら公式サイト 🌸</span>
+      <span class="mx-8">💖 百合小説 💖</span>
+      <span class="mx-8">📚 学園恋愛 📚</span>
+      <span class="mx-8">🌸 ツンしら公式サイト 🌸</span>
+      <span class="mx-8">💖 百合小説 💖</span>
+      <span class="mx-8">📚 学園恋愛 📚</span>
+    </div>
+  </div>
+  
+  <!-- Header -->
+  <header class="fixed top-8 w-full z-50 bg-white border-4 border-retro-primary shadow-lg">
+    <nav class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <a href="index.html" class="retro-title flex items-center gap-2">
+          <span class="retro-blink">★</span>
+          ツンしら
+          <span class="retro-blink">★</span>
+        </a>
+        
+        <div class="hidden md:flex space-x-8">
+          <a href="#story" class="text-retro-primary font-bold hover:text-retro-dark hover:underline">ストーリー</a>
+          <a href="#characters" class="text-retro-primary font-bold hover:text-retro-dark hover:underline">登場人物</a>
+          <a href="#episodes" class="text-retro-primary font-bold hover:text-retro-dark hover:underline">エピソード</a>
+        </div>
+
+        <button class="md:hidden" id="menuBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-lg md:hidden hidden">
+    <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
+      <a href="#story" class="text-retro-primary font-bold hover:underline mobile-menu-link">ストーリー</a>
+      <a href="#characters" class="text-retro-primary font-bold hover:underline mobile-menu-link">登場人物</a>
+      <a href="#episodes" class="text-retro-primary font-bold hover:underline mobile-menu-link">エピソード</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center pt-24">
+    <div class="container mx-auto px-4 text-center">
+      <div class="mb-8">
+        <div class="text-8xl mb-4 retro-blink">★</div>
+        <h1 class="retro-title mb-6">
+          ツンしら公式サイト
+        </h1>
+        <div class="retro-marquee mb-8">
+          <div class="animate-marquee whitespace-nowrap">
+            <span>百合小説が好きな女子高生の切ない学園恋愛</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+        <a href="#episodes">
+          <button class="retro-button flex items-center justify-center gap-3 text-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            小説を読む
+          </button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section id="story" class="retro-section">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-block bg-retro-primary text-white px-6 py-2 mb-4">
+          <h2 class="text-2xl font-black">ストーリー</h2>
+        </div>
+        <p class="text-retro-dark max-w-2xl mx-auto text-lg">
+          魔法少女たちのきらきらした冒険の物語。
+          友情、愛、そして夢を追いかける感動のストーリーが今始まる！
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="retro-card p-8">
+          <h3 class="text-2xl font-black text-retro-primary mb-6 retro-blink">あらすじ</h3>
+          <p class="text-retro-dark leading-relaxed text-lg">
+            百合小説が大好きな女子高生・土筆（つくし）。
+            その秘密をクラスメイトの天原さんに知られてしまい…？
+            二人の関係が急接近する学園恋愛物語が始まる！
+            席替えで隣になった天原さん、本屋で出会った星村さん。
+            揺れる少女心を描いた切ないストーリー。
+          </p>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="retro-card p-6 flex items-center gap-4">
+            <div class="w-12 h-12 bg-retro-primary rounded-full flex items-center justify-center text-white font-bold text-xl">
+              📚
+            </div>
+            <div>
+              <h4 class="font-black text-retro-primary text-lg">百合小説</h4>
+              <p class="text-retro-dark/70">主人公の大切な趣味</p>
+            </div>
+          </div>
+          
+          <div class="retro-card p-6 flex items-center gap-4">
+            <div class="w-12 h-12 bg-retro-secondary rounded-full flex items-center justify-center text-white font-bold text-xl">
+              💖
+            </div>
+            <div>
+              <h4 class="font-black text-retro-primary text-lg">学園恋愛</h4>
+              <p class="text-retro-dark/70">少女たちの関係性</p>
+            </div>
+          </div>
+          
+          <div class="retro-card p-6 flex items-center gap-4">
+            <div class="w-12 h-12 bg-retro-accent rounded-full flex items-center justify-center text-white font-bold text-xl">
+              🌸
+            </div>
+            <div>
+              <h4 class="font-black text-retro-primary text-lg">切ない少女心</h4>
+              <p class="text-retro-dark/70">揺れる感情の描写</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Characters Section -->
+  <section id="characters" class="retro-section bg-retro-accent/20">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-block bg-retro-primary text-white px-6 py-2 mb-4">
+          <h2 class="text-2xl font-black">登場人物</h2>
+        </div>
+        <p class="text-retro-dark max-w-2xl mx-auto text-lg">
+          物語を彩る魅力的な女子高生たちをご紹介
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="charactersGrid">
+        <!-- キャラクターカードはJavaScriptで生成 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Episodes Section -->
+  <section id="episodes" class="retro-section">
+    <div class="container mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-block bg-retro-primary text-white px-6 py-2 mb-4">
+          <h2 class="text-2xl font-black">エピソード</h2>
+        </div>
+        <p class="text-retro-dark max-w-2xl mx-auto text-lg">
+          各回の見どころ紹介
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6" id="episodesGrid">
+        <!-- エピソードカードはJavaScriptで生成 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-retro-primary text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <span class="retro-blink">★</span>
+          <h3 class="text-2xl font-black">
+            ツンしら
+          </h3>
+          <span class="retro-blink">★</span>
+        </div>
+        <p class="font-medium">
+          「ツンしら」公式サイト
+        </p>
+      </div>
+      
+      <div class="border-t-4 border-white pt-8 text-center">
+        <p class="text-lg font-medium">&copy; 2026 ツンしら</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

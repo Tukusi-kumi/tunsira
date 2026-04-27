@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+/* CSS Variables */
+:root {
+  --retro-primary: #FF1493;
+  --retro-secondary: #FF69B4;
+  --retro-accent: #FFB6C1;
+  --retro-dark: #4B0082;
+  --retro-green: #32CD32;
+  --retro-blue: #00CED1;
+  --retro-yellow: #FFD700;
+  --retro-light: #FFF0F5;
+}
+
+/* Base Styles */
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Retro Components */
+.retro-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--retro-primary);
+  text-shadow: 2px 2px 0px #000, -1px -1px 0px #fff;
+  letter-spacing: 0.1em;
+}
+
+@media (min-width: 768px) {
+  .retro-title {
+    font-size: 3rem;
+  }
+}
+
+.retro-button {
+  background-color: var(--retro-primary);
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border: 4px solid var(--retro-dark);
+  box-shadow: 4px 4px 0px #000;
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+
+.retro-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000;
+}
+
+.retro-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #000;
+}
+
+.retro-card {
+  background-color: white;
+  border: 4px solid var(--retro-primary);
+  box-shadow: 4px 4px 0px #000;
+}
+
+.retro-section {
+  padding: 4rem 1rem;
+}
+
+.retro-marquee {
+  background-color: var(--retro-primary);
+  color: white;
+  padding: 0.5rem 0;
+  overflow: hidden;
+  border-bottom: 4px solid #000;
+}
+
+.retro-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Utility Classes */
+.bg-retro-primary {
+  background-color: var(--retro-primary);
+}
+
+.bg-retro-secondary {
+  background-color: var(--retro-secondary);
+}
+
+.bg-retro-accent {
+  background-color: var(--retro-accent);
+}
+
+.bg-retro-dark {
+  background-color: var(--retro-dark);
+}
+
+.bg-retro-green {
+  background-color: var(--retro-green);
+}
+
+.bg-retro-blue {
+  background-color: var(--retro-blue);
+}
+
+.bg-retro-yellow {
+  background-color: var(--retro-yellow);
+}
+
+.bg-retro-light {
+  background-color: var(--retro-light);
+}
+
+.text-retro-primary {
+  color: var(--retro-primary);
+}
+
+.text-retro-secondary {
+  color: var(--retro-secondary);
+}
+
+.text-retro-accent {
+  color: var(--retro-accent);
+}
+
+.text-retro-dark {
+  color: var(--retro-dark);
+}
+
+.border-retro-primary {
+  border-color: var(--retro-primary);
+}
+
+.border-retro-dark {
+  border-color: var(--retro-dark);
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--retro-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--retro-primary);
+  border: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--retro-secondary);
+}
