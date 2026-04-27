@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/tunsira/static/css/main.3aed97ec.css",
-    "main.js": "/tunsira/static/js/main.24f7c6c3.js",
-    "index.html": "/tunsira/index.html",
-    "main.3aed97ec.css.map": "/tunsira/static/css/main.3aed97ec.css.map",
-    "main.24f7c6c3.js.map": "/tunsira/static/js/main.24f7c6c3.js.map"
+    "main.css": "./static/css/main.3aed97ec.css",
+    "main.js": "./static/js/main.24f7c6c3.js",
+    "index.html": "./index.html",
+    "main.3aed97ec.css.map": "./static/css/main.3aed97ec.css.map",
+    "main.24f7c6c3.js.map": "./static/js/main.24f7c6c3.js.map"
   },
   "entrypoints": [
     "static/css/main.3aed97ec.css",
