@@ -6,12 +6,12 @@
   --primary-dark: #C71585;
   --secondary: #FF69B4;
   --accent: #FFB6C1;
-  --dark: #4B0082;
-  --light: #FFF0F5;
-  --gray: #6B7280;
-  --success: #32CD32;
+  --dark: #DB7093;
+  --light: #FFFFFF;
+  --gray: #FFB6C1;
+  --success: #FF69B4;
   --warning: #FFD700;
-  --danger: #FF4500;
+  --danger: #FF1493;
 }
 
 /* Base Styles */
