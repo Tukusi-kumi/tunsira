@@ -13,6 +13,7 @@ const episodes = [
   { id: 3, title: '第三話　初デート！？', date: '2026-01-18', description: '二人きりの初めての外出' },
   { id: 4, title: '第四話　席替え', date: '2026-02-23', description: '運命の席替えと隣になった天原さん' },
   { id: 5, title: '第五話　休日の本屋', date: '2026-03-16', description: '本屋での星村さんとの遭遇' },
+  { id: 6, title: '第六話　放課後の教室', date: '2026-04-20', description: '星村さんとの放課後の対面' },
 ];
 
 // Render Characters
