@@ -20,7 +20,7 @@ const episodes = [
 function renderCharacters() {
   const grid = document.getElementById('charactersGrid');
   grid.innerHTML = characters.map((character, index) => `
-    <div class="modern-card p-4 text-center group cursor-pointer character-card animate-on-scroll" style="animation-delay: ${index * 0.1}s">
+    <div class="modern-card p-4 text-center group cursor-pointer character-card">
       <div class="text-4xl mb-2 text-primary font-bold">${character.image}</div>
       <h3 class="text-lg font-bold text-primary mb-1">${character.name}</h3>
       <p class="text-dark font-semibold mb-1 text-sm">${character.role}</p>
@@ -34,7 +34,7 @@ function renderEpisodes() {
   const grid = document.getElementById('episodesGrid');
   grid.innerHTML = episodes.map((episode, index) => `
     <a href="novel.html?episode=${episode.id}" class="block">
-      <div class="modern-card p-6 flex gap-6 cursor-pointer episode-card animate-on-scroll flex-col sm:flex-row" style="animation-delay: ${index * 0.15}s">
+      <div class="modern-card p-6 flex gap-6 cursor-pointer episode-card flex-col sm:flex-row">
         <div class="flex-shrink-0 flex justify-center sm:justify-start">
           <div class="w-20 h-20 sm:w-20 sm:h-20 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white font-bold text-2xl">
             ${episode.id}
@@ -94,24 +94,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 document.addEventListener('DOMContentLoaded', () => {
   renderCharacters();
   renderEpisodes();
-
-  // Scroll Animation Observer
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        entry.target.classList.add('animate-fade-in-up');
-      }
-    });
-  }, observerOptions);
-
-  // Observe all animate-on-scroll elements
-  document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    observer.observe(el);
-  });
 });
