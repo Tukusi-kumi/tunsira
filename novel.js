@@ -500,6 +500,8 @@ function renderEpisode() {
   // Update navigation buttons
   document.getElementById('prevBtn').disabled = currentEpisode === 1;
   document.getElementById('nextBtn').disabled = currentEpisode === episodes.length;
+  document.getElementById('prevBtnBottom').disabled = currentEpisode === 1;
+  document.getElementById('nextBtnBottom').disabled = currentEpisode === episodes.length;
 
   // Update indicators
   const indicators = document.getElementById('episodeIndicators');
@@ -528,6 +530,18 @@ document.getElementById('prevBtn').addEventListener('click', () => {
 });
 
 document.getElementById('nextBtn').addEventListener('click', () => {
+  if (currentEpisode < episodes.length) {
+    changeEpisode(currentEpisode + 1);
+  }
+});
+
+document.getElementById('prevBtnBottom').addEventListener('click', () => {
+  if (currentEpisode > 1) {
+    changeEpisode(currentEpisode - 1);
+  }
+});
+
+document.getElementById('nextBtnBottom').addEventListener('click', () => {
   if (currentEpisode < episodes.length) {
     changeEpisode(currentEpisode + 1);
   }
