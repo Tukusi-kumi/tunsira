@@ -16,17 +16,77 @@ const episodes = [
   { id: 6, title: '第六話　放課後の教室', date: '2026-04-20', description: '星村さんとの放課後の対面' },
 ];
 
+const newsItems = [
+  {
+    id: 1,
+    title: '第六話「放課後の教室」公開',
+    date: '2026-04-20',
+    content: '第六話「放課後の教室」を公開しました。'
+  },
+  {
+    id: 2,
+    title: 'サイトリニューアル',
+    date: '2026-04-15',
+    content: 'サイトをモダンなデザインにリニューアルしました。'
+  },
+  {
+    id: 3,
+    title: '第五話「休日の本屋」公開',
+    date: '2026-03-16',
+    content: '第五話「休日の本屋」を公開しました。'
+  },
+  {
+    id: 4,
+    title: '第四話「席替え」公開',
+    date: '2026-02-23',
+    content: '第四話「席替え」を公開しました。'
+  },
+  {
+    id: 5,
+    title: '第三話「初デート！？」公開',
+    date: '2026-01-18',
+    content: '第三話「初デート！？」を公開しました。'
+  },
+  {
+    id: 6,
+    title: '第二話「命令！？」公開',
+    date: '2025-12-31',
+    content: '第二話「命令！？」を公開しました。'
+  },
+  {
+    id: 7,
+    title: '第一話「あの子の秘密」公開',
+    date: '2025-12-31',
+    content: '第一話「あの子の秘密」を公開しました。'
+  },
+  {
+    id: 8,
+    title: 'サイトオープン',
+    date: '2025-12-25',
+    content: '「ツンしら」公式サイトをオープンしました。'
+  }
+];
+
 // Render Characters
 function renderCharacters() {
   const grid = document.getElementById('charactersGrid');
   grid.innerHTML = characters.map((character, index) => `
-    <div class="modern-card p-4 text-center group cursor-pointer character-card">
+    <div class="modern-card p-4 text-center group cursor-pointer character-card grid-item" style="transition-delay: ${index * 100}ms">
       <div class="text-4xl mb-2 text-primary font-bold">${character.image}</div>
       <h3 class="text-lg font-bold text-primary mb-1">${character.name}</h3>
       <p class="text-dark font-semibold mb-1 text-sm">${character.role}</p>
       <p class="text-gray text-xs">${character.description}</p>
     </div>
   `).join('');
+  
+  // Add stagger animation
+  setTimeout(() => {
+    document.querySelectorAll('.character-card').forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('visible');
+      }, index * 100);
+    });
+  }, 100);
 }
 
 // Render Episodes
@@ -34,7 +94,7 @@ function renderEpisodes() {
   const grid = document.getElementById('episodesGrid');
   grid.innerHTML = episodes.map((episode, index) => `
     <a href="novel.html?episode=${episode.id}" class="block">
-      <div class="modern-card p-6 flex gap-6 cursor-pointer episode-card flex-col sm:flex-row">
+      <div class="modern-card p-6 flex gap-6 cursor-pointer episode-card flex-col sm:flex-row grid-item" style="transition-delay: ${index * 100}ms">
         <div class="flex-shrink-0 flex justify-center sm:justify-start">
           <div class="w-20 h-20 sm:w-20 sm:h-20 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white font-bold text-2xl">
             ${episode.id}
@@ -56,42 +116,185 @@ function renderEpisodes() {
       </div>
     </a>
   `).join('');
+  
+  // Add stagger animation
+  setTimeout(() => {
+    document.querySelectorAll('.episode-card').forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('visible');
+      }, index * 100);
+    });
+  }, 100);
+}
+
+// Render News Preview (top 2 items)
+function renderNewsPreview() {
+  const newsPreview = document.getElementById('newsPreview');
+  if (!newsPreview) return;
+  
+  const latestNews = newsItems.slice(0, 2);
+  newsPreview.innerHTML = latestNews.map(item => `
+    <div class="modern-card p-4 hover:scale-105 transition-transform duration-300">
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 text-sm text-gray whitespace-nowrap">
+          ${item.date}
+        </div>
+        <div class="flex-1">
+          <h3 class="font-bold text-primary mb-1">${item.title}</h3>
+          <p class="text-gray text-sm">${item.content}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
 }
 
 // Mobile Menu
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-let isMenuOpen = false;
+let menuBtn, mobileMenu, isMenuOpen = false;
 
-menuBtn.addEventListener('click', () => {
-  isMenuOpen = !isMenuOpen;
-  mobileMenu.classList.toggle('hidden', !isMenuOpen);
-});
-
-// Close mobile menu when clicking links
-document.querySelectorAll('.mobile-menu-link').forEach(link => {
-  link.addEventListener('click', () => {
-    isMenuOpen = false;
-    mobileMenu.classList.add('hidden');
-  });
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+function initMobileMenu() {
+  menuBtn = document.getElementById('menuBtn');
+  mobileMenu = document.getElementById('mobileMenu');
+  
+  if (!menuBtn || !mobileMenu) return;
+  
+  menuBtn.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    mobileMenu.classList.toggle('hidden', !isMenuOpen);
+    if (isMenuOpen) {
+      mobileMenu.style.animation = 'fadeInUp 0.3s ease-out';
     }
   });
+  
+  // Close mobile menu when clicking links
+  document.querySelectorAll('.mobile-menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      isMenuOpen = false;
+      mobileMenu.classList.add('hidden');
+    });
+  });
+}
+
+// Smooth scroll for anchor links
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+}
+
+// Header scroll effect
+const header = document.getElementById('header');
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY;
+  
+  if (currentScrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+  
+  lastScrollY = currentScrollY;
 });
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+    }
+  });
+}, observerOptions);
+
+// Observe all animate-on-scroll elements
+document.querySelectorAll('.animate-on-scroll').forEach(el => {
+  observer.observe(el);
+});
+
+// Typing Effect for Hero Section
+function typeWriter(element, text, speed = 100) {
+  let i = 0;
+  element.innerHTML = '';
+  
+  function type() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  
+  type();
+}
+
+// Loading Screen
+function initLoadingScreen() {
+  const loadingScreen = document.getElementById('loadingScreen');
+  const loadingBar = document.getElementById('loadingBar');
+  
+  if (!loadingScreen || !loadingBar) return;
+  
+  // Simulate loading progress
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 30;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      
+      // Hide loading screen after a short delay
+      setTimeout(() => {
+        loadingScreen.style.opacity = '0';
+        loadingScreen.style.transition = 'opacity 0.5s ease-out';
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+        }, 500);
+      }, 300);
+    }
+    loadingBar.style.width = progress + '%';
+  }, 200);
+}
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize loading screen
+  initLoadingScreen();
+  
   renderCharacters();
   renderEpisodes();
+  renderNewsPreview();
+  
+  // Initialize mobile menu
+  initMobileMenu();
+  
+  // Initialize smooth scroll
+  initSmoothScroll();
+  
+  // Add scroll-triggered animations for sections
+  const sections = document.querySelectorAll('section');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  sections.forEach(section => {
+    sectionObserver.observe(section);
+  });
 });
