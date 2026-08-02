@@ -90,7 +90,7 @@ const episodes = [
 　そう言って、天原さんはニヤニヤと笑った。
 　☆☆☆☆☆☆
 　ここは天原愛の自室。
-　かわいいもの、小物が多い部屋。
+かわいいもの、小物が多い部屋。
 「愛ちゃんお風呂入って」
 　廊下の方から聞き慣れた声が聞こえた。
 　お母さんの声だ。
@@ -462,7 +462,7 @@ const episodes = [
 　って何を考えているんだ。
 　略奪恋愛じゃない！
 　私は別に天原さんの事はその......恋愛的に好きじゃない！
-　「私、もう帰るから！」
+　 「私、もう帰るから！」
 　鞄を持ち上げた。
 　星村さんの隣をすり抜ける。
 「じゃあね、レズな土筆さん」
@@ -507,8 +507,8 @@ function renderEpisode() {
   const indicators = document.getElementById('episodeIndicators');
   indicators.innerHTML = episodes.map(ep => `
     <button 
-      class="w-3 h-3 rounded-full border-2 border-retro-primary transition-colors ${
-        ep.id === currentEpisode ? 'bg-retro-primary' : 'bg-white hover:bg-retro-primary/30'
+      class="w-3 h-3 rounded-full border-2 border-primary transition-colors ${
+        ep.id === currentEpisode ? 'bg-primary' : 'bg-white hover:bg-primary/30'
       }"
       onclick="changeEpisode(${ep.id})"
     ></button>
@@ -552,4 +552,70 @@ document.addEventListener('DOMContentLoaded', () => {
   currentEpisode = getEpisodeFromURL();
   renderEpisode();
   window.scrollTo(0, 0);
+  
+  // Initialize particle system
+  const canvas = document.getElementById('particleCanvas');
+  if (canvas) {
+    new ParticleSystem(canvas);
+  }
 });
+
+// Particle System for Novel Page
+class ParticleSystem {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.particles = [];
+    this.resize();
+    
+    window.addEventListener('resize', () => this.resize());
+    this.initParticles();
+    this.animate();
+  }
+  
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+  
+  initParticles() {
+    const particleCount = Math.min(30, Math.floor(window.innerWidth / 30));
+    
+    for (let i = 0; i < particleCount; i++) {
+      this.particles.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        size: Math.random() * 2 + 1,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.3 + 0.1,
+        color: Math.random() > 0.5 ? '#FF1493' : '#FF69B4'
+      });
+    }
+  }
+  
+  animate() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    this.particles.forEach(particle => {
+      particle.x += particle.speedX;
+      particle.y += particle.speedY;
+      
+      // Wrap around edges
+      if (particle.x < 0) particle.x = this.canvas.width;
+      if (particle.x > this.canvas.width) particle.x = 0;
+      if (particle.y < 0) particle.y = this.canvas.height;
+      if (particle.y > this.canvas.height) particle.y = 0;
+      
+      // Draw particle
+      this.ctx.beginPath();
+      this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      this.ctx.fillStyle = particle.color;
+      this.ctx.globalAlpha = particle.opacity;
+      this.ctx.fill();
+    });
+    
+    this.ctx.globalAlpha = 1;
+    requestAnimationFrame(() => this.animate());
+  }
+}
