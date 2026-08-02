@@ -11,8 +11,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
   <body class="min-h-screen bg-light">
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="fixed inset-0 z-[100] bg-gradient-to-br from-pink-100 via-white to-purple-100 flex items-center justify-center">
+    <div class="text-center">
+      <div class="text-6xl mb-4 animate-bounce">★</div>
+      <h1 class="text-3xl font-bold text-primary mb-4">ツンしら</h1>
+      <div class="w-64 h-4 bg-gray-300 rounded-full overflow-hidden mx-auto shadow-inner">
+        <div id="loadingBar" class="h-full bg-black rounded-full transition-all duration-300 shadow-lg" style="width: 0%"></div>
+      </div>
+      <p class="text-gray mt-4 text-sm">読み込み中...</p>
+    </div>
+  </div>
+
   <!-- Modern Marquee Header -->
-  <div class="modern-marquee">
+  <div class="modern-marquee relative z-10">
     <div class="animate-marquee whitespace-nowrap">
       <span class="mx-8"> ツンしら公式サイト </span>
       <span class="mx-8"> 百合小説 </span>
@@ -22,19 +34,20 @@
   </div>
 
   <!-- Header -->
-  <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200 shadow-sm">
+  <header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-lg transition-all duration-300" id="header">
     <nav class="container mx-auto px-4 py-4">
       <div class="flex justify-between items-center">
         <a href="index.html" class="modern-title flex items-center gap-2 text-2xl">
-          <span class="text-primary">★</span>
+          <span class="text-primary animate-spin-slow">★</span>
           ツンしら
-          <span class="text-secondary">★</span>
+          <span class="text-secondary animate-spin-slow">★</span>
         </a>
 
         <div class="hidden md:flex space-x-8">
           <a href="#story" class="text-dark font-semibold hover:text-primary transition-colors">ストーリー</a>
           <a href="#characters" class="text-dark font-semibold hover:text-primary transition-colors">登場人物</a>
           <a href="#episodes" class="text-dark font-semibold hover:text-primary transition-colors">エピソード</a>
+          <a href="news.html" class="text-dark font-semibold hover:text-primary transition-colors">お知らせ</a>
         </div>
 
         <button class="md:hidden" id="menuBtn">
@@ -54,27 +67,30 @@
       <a href="#story" class="text-dark font-semibold hover:text-primary transition-colors mobile-menu-link">ストーリー</a>
       <a href="#characters" class="text-dark font-semibold hover:text-primary transition-colors mobile-menu-link">登場人物</a>
       <a href="#episodes" class="text-dark font-semibold hover:text-primary transition-colors mobile-menu-link">エピソード</a>
+      <a href="news.html" class="text-dark font-semibold hover:text-primary transition-colors mobile-menu-link">お知らせ</a>
     </div>
   </div>
 
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center pt-20">
-    <div class="container mx-auto px-4 text-center">
-      <div class="mb-8">
-        <div class="text-8xl mb-4 animate-float">★</div>
-        <h1 class="modern-title mb-6 animate-fade-in-up">
+  <section class="relative min-h-[35vh] sm:min-h-[40vh] flex items-center justify-center pt-16 sm:pt-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-pink-100/50 via-white/50 to-purple-100/50"></div>
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23FF1493\" fill-opacity=\"0.05\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <div class="mb-3 sm:mb-4">
+        <div class="text-4xl sm:text-5xl mb-2 animate-float">★</div>
+        <h1 class="modern-title mb-2 animate-fade-in-up">
           ツンしら公式サイト
         </h1>
-        <div class="modern-marquee mb-8 animate-fade-in-up delay-200">
+        <div class="modern-marquee mb-3 sm:mb-4 animate-fade-in-up delay-200">
           <div class="animate-marquee whitespace-nowrap">
             <span>百合小説が好きな女子高生の恋愛</span>
           </div>
         </div>
       </div>
-      <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12 animate-fade-in-up delay-300">
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-3 sm:mb-4 animate-fade-in-up delay-300">
         <a href="#episodes">
-          <button class="modern-button flex items-center justify-center gap-3 text-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button class="modern-button flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 group">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:animate-pulse">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
             小説を読む
@@ -84,56 +100,69 @@
     </div>
   </section>
 
-  <!-- Story Section -->
-  <section id="story" class="modern-section animate-on-scroll">
+  <!-- News Section -->
+  <section id="news" class="modern-section animate-on-scroll relative z-10">
     <div class="container mx-auto">
-      <div class="text-center mb-12">
-        <div class="inline-block bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full mb-4 animate-scale-in">
-          <h2 class="text-2xl font-bold">ストーリー</h2>
+      <div class="text-center mb-8 sm:mb-12">
+        <div class="inline-block bg-gradient-to-r from-primary to-secondary text-dark px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-4 animate-scale-in hover:scale-110 transition-transform duration-300">
+          <h2 class="text-xl sm:text-2xl font-bold">お知らせ</h2>
         </div>
-        <p class="text-gray max-w-2xl mx-auto text-lg animate-fade-in-up delay-100">
-   
+      </div>
+      <div class="max-w-4xl mx-auto space-y-3 sm:space-y-4" id="newsPreview">
+        <!-- お知らせはJavaScriptで生成 -->
+      </div>
+      <div class="text-center mt-6 sm:mt-8">
+        <a href="news.html" class="text-primary font-semibold hover:underline transition-colors text-sm sm:text-base">すべてのお知らせを見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section id="story" class="modern-section animate-on-scroll relative z-10">
+    <div class="container mx-auto">
+      <div class="text-center mb-8 sm:mb-12">
+        <div class="inline-block bg-gradient-to-r from-primary to-secondary text-dark px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-4 animate-scale-in hover:scale-110 transition-transform duration-300">
+          <h2 class="text-xl sm:text-2xl font-bold">ストーリー</h2>
+        </div>
+        <p class="text-gray max-w-2xl mx-auto text-base sm:text-lg animate-fade-in-up delay-100">
+
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="modern-card p-8 animate-fade-in-left delay-200">
-          <h3 class="text-2xl font-bold text-primary mb-6">あらすじ</h3>
-          <p class="text-gray leading-relaxed text-lg">
+      <div class="grid md:grid-cols-2 gap-4 sm:gap-8">
+        <div class="modern-card p-4 sm:p-8 animate-fade-in-left delay-200 hover:scale-105 hover:shadow-xl transition-all duration-300">
+          <h3 class="text-xl sm:text-2xl font-bold text-dark mb-4 sm:mb-6">あらすじ</h3>
+          <p class="text-gray leading-relaxed text-sm sm:text-lg">
             百合小説が大好きな女子高生・土筆（つくし）。
             その秘密をクラスメイトの天原さんに知られてしまい…？
             二人の関係が接近する恋愛物語が始まる！
           </p>
         </div>
+        <div class="modern-card p-4 sm:p-8 animate-fade-in-right delay-300 hover:scale-105 hover:shadow-xl transition-all duration-300">
+          <h3 class="text-xl sm:text-2xl font-bold text-dark mb-4 sm:mb-6">百合小説</h3>
+          <p class="text-gray leading-relaxed text-sm sm:text-lg">
+            主人公の大切な趣味
+          </p>
+        </div>
 
-        <div class="space-y-4 animate-fade-in-right delay-300">
-          <div class="modern-card p-6 flex items-center gap-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white font-bold text-xl animate-pulse">
-              📚
-            </div>
-            <div>
-              <h4 class="font-bold text-primary text-lg">百合小説</h4>
-              <p class="text-gray">主人公の大切な趣味</p>
-            </div>
-          </div>
-
-          <div class="modern-card p-6 flex items-center gap-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center text-white font-bold text-xl animate-pulse delay-100">
+        <div class="space-y-4">
+          <div class="modern-card p-4 sm:p-6 flex items-center gap-3 sm:gap-4 hover:scale-105 hover:shadow-lg transition-all duration-300 group">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center text-white font-bold text-lg sm:text-xl animate-pulse delay-100 group-hover:animate-bounce">
               💖
             </div>
             <div>
-              <h4 class="font-bold text-primary text-lg">学園恋愛</h4>
-              <p class="text-gray">少女たちの関係性</p>
+              <h4 class="font-bold text-dark text-base sm:text-lg">学園恋愛</h4>
+              <p class="text-gray text-sm sm:text-base">少女たちの関係性</p>
             </div>
           </div>
 
-          <div class="modern-card p-6 flex items-center gap-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center text-white font-bold text-xl animate-pulse delay-200">
+          <div class="modern-card p-4 sm:p-6 flex items-center gap-3 sm:gap-4 hover:scale-105 hover:shadow-lg transition-all duration-300 group">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center text-white font-bold text-lg sm:text-xl animate-pulse delay-200 group-hover:animate-bounce">
               🌸
             </div>
             <div>
-              <h4 class="font-bold text-primary text-lg">切ない少女心</h4>
-              <p class="text-gray">揺れる感情の描写</p>
+              <h4 class="font-bold text-dark text-base sm:text-lg">切ない少女心</h4>
+              <p class="text-gray text-sm sm:text-base">揺れる感情の描写</p>
             </div>
           </div>
         </div>
@@ -142,51 +171,49 @@
   </section>
 
   <!-- Characters Section -->
-  <section id="characters" class="modern-section bg-gray-50 animate-on-scroll">
+  <section id="characters" class="modern-section bg-gray-50 animate-on-scroll relative z-10">
     <div class="container mx-auto">
-      <div class="text-center mb-12">
-        <div class="inline-block bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full mb-4 animate-scale-in">
-          <h2 class="text-2xl font-bold">登場人物</h2>
+      <div class="text-center mb-8 sm:mb-12">
+        <div class="inline-block bg-gradient-to-r from-primary to-secondary text-dark px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-4 animate-scale-in hover:scale-110 transition-transform duration-300">
+          <h2 class="text-xl sm:text-2xl font-bold">登場人物</h2>
         </div>
-        <p class="text-gray max-w-2xl mx-auto text-lg animate-fade-in-up delay-100">
+        <p class="text-gray max-w-2xl mx-auto text-base sm:text-lg animate-fade-in-up delay-100">
           物語を彩る魅力的な女子高生たちをご紹介
         </p>
       </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="charactersGrid">
-        <!-- キャラクターカードはJavaScriptで生成 -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6" id="charactersGrid">
+        <!-- Characters will be generated by JavaScript -->
       </div>
     </div>
   </section>
 
   <!-- Episodes Section -->
-  <section id="episodes" class="modern-section animate-on-scroll">
+  <section id="episodes" class="modern-section animate-on-scroll relative z-10">
     <div class="container mx-auto">
-      <div class="text-center mb-12">
-        <div class="inline-block bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full mb-4 animate-scale-in">
-          <h2 class="text-2xl font-bold">エピソード</h2>
+      <div class="text-center mb-8 sm:mb-12">
+        <div class="inline-block bg-gradient-to-r from-primary to-secondary text-dark px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-4 animate-scale-in hover:scale-110 transition-transform duration-300">
+          <h2 class="text-xl sm:text-2xl font-bold">エピソード</h2>
         </div>
-        <p class="text-gray max-w-2xl mx-auto text-lg animate-fade-in-up delay-100">
+        <p class="text-gray max-w-2xl mx-auto text-base sm:text-lg animate-fade-in-up delay-100">
           各回の見どころ紹介
         </p>
       </div>
-
-      <div class="grid md:grid-cols-2 gap-6" id="episodesGrid">
-        <!-- エピソードカードはJavaScriptで生成 -->
+      <div class="grid gap-4 sm:gap-6" id="episodesGrid">
+        <!-- Episodes will be generated by JavaScript -->
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gradient-to-r from-primary to-secondary text-white py-12">
+  <footer class="bg-gradient-to-r from-primary to-secondary text-white py-12 relative z-10">
     <div class="container mx-auto px-4">
       <div class="text-center mb-8">
         <div class="flex items-center justify-center gap-2 mb-4">
-          <span class="text-2xl">★</span>
+          <span class="text-2xl animate-spin-slow">★</span>
           <h3 class="text-2xl font-bold">
             ツンしら
           </h3>
-          <span class="text-2xl">★</span>
+          <span class="text-2xl animate-spin-slow">★</span>
         </div>
         <p class="font-medium">
           「ツンしら」公式サイト
