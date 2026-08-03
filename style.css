@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Noto+Sans+JP:wght@400;700&display=swap');
 
-/* CSS Variables */
+/* CSS Variables - Modern Theme */
 :root {
   --primary: #FF1493;
   --primary-dark: #C71585;
@@ -14,7 +14,21 @@
   --danger: #FF1493;
 }
 
-/* Base Styles */
+/* CSS Variables - Retro Theme (Green & Black) */
+[data-theme="retro"] {
+  --primary: #00FF00;
+  --primary-dark: #00CC00;
+  --secondary: #00CC00;
+  --accent: #00FF00;
+  --dark: #000000;
+  --light: #1a1a1a;
+  --gray: #333333;
+  --success: #00FF00;
+  --warning: #00FF00;
+  --danger: #00FF00;
+}
+
+/* Base Styles - Modern Theme */
 body {
   font-family: 'Inter', 'Noto Sans JP', sans-serif;
   margin: 0;
@@ -25,14 +39,36 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
+  transition: all 0.3s ease;
 }
 
-/* Novel Text Styles */
+/* Base Styles - Retro Theme */
+[data-theme="retro"] body {
+  font-family: 'VT323', 'Noto Sans JP', monospace;
+  background: #000000;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, #001a00 2px, #001a00 4px),
+    radial-gradient(circle at 50% 50%, #001a00 0%, #000000 100%);
+  color: #00FF00;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* Novel Text Styles - Modern Theme */
 .novel-text {
   font-size: 1rem;
   line-height: 2;
   letter-spacing: 0.05em;
   color: var(--dark);
+}
+
+/* Novel Text Styles - Retro Theme */
+[data-theme="retro"] .novel-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  color: #00FF00;
+  font-family: 'VT323', 'Noto Sans JP', monospace;
 }
 
 @media (min-width: 768px) {
@@ -157,7 +193,7 @@ body {
   }
 }
 
-/* Modern Components */
+/* Modern Components - Modern Theme */
 .modern-title {
   font-size: 1.75rem;
   font-weight: 700;
@@ -167,6 +203,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  transition: all 0.3s ease;
 }
 
 @media (min-width: 768px) {
@@ -175,6 +212,22 @@ body {
   }
 }
 
+/* Modern Components - Retro Theme */
+[data-theme="retro"] .modern-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00FF00;
+  letter-spacing: 0.1em;
+  text-shadow: 2px 2px #003300, -1px -1px #006600;
+  font-family: 'Press Start 2P', monospace;
+  text-transform: uppercase;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #00FF00;
+  background-clip: unset;
+}
+
+/* Modern Button - Modern Theme */
 .modern-button {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
@@ -199,26 +252,44 @@ body {
   }
 }
 
-.modern-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
-}
-
-.modern-button:hover::before {
-  left: 100%;
-}
-
 .modern-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4), 0 3px 10px rgba(255, 20, 147, 0.3);
 }
 
+/* Modern Button - Retro Theme */
+[data-theme="retro"] .modern-button {
+  background: #000000;
+  color: #00FF00;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: 3px solid #00FF00;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'VT323', monospace;
+  transition: all 0.1s ease;
+  position: relative;
+  min-height: 32px;
+  min-width: 80px;
+  text-transform: uppercase;
+  box-shadow: none;
+}
+
+[data-theme="retro"] .modern-button:hover {
+  background: #00FF00;
+  color: #000000;
+  border: 3px solid #00FF00;
+  transform: none;
+}
+
+[data-theme="retro"] .modern-button:active {
+  border: 3px solid #00CC00;
+  background: #00CC00;
+  color: #000000;
+}
+
+/* Modern Card - Modern Theme */
 .modern-card {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
@@ -234,6 +305,23 @@ body {
   border-color: rgba(255, 20, 147, 0.2);
 }
 
+/* Modern Card - Retro Theme */
+[data-theme="retro"] .modern-card {
+  background: #000000;
+  border: 3px solid #00FF00;
+  border-radius: 0;
+  box-shadow: 5px 5px 0px #003300, inset 0 0 10px rgba(0, 255, 0, 0.3);
+  transition: all 0.2s ease;
+  padding: 1rem;
+  backdrop-filter: none;
+}
+
+[data-theme="retro"] .modern-card:hover {
+  border-color: #00CC00;
+  box-shadow: 5px 5px 0px #00FF00, inset 0 0 15px rgba(0, 255, 0, 0.5);
+  transform: none;
+}
+
 .modern-section {
   padding: 3rem 1rem;
 }
@@ -244,11 +332,24 @@ body {
   }
 }
 
+/* Modern Marquee - Modern Theme */
 .modern-marquee {
   background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
   color: white;
   padding: 0.75rem 0;
   overflow: hidden;
+}
+
+/* Modern Marquee - Retro Theme */
+[data-theme="retro"] .modern-marquee {
+  background: #000000;
+  color: #00FF00;
+  padding: 0.5rem 0;
+  overflow: hidden;
+  border-bottom: 3px solid #00FF00;
+  border-top: 3px solid #00FF00;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
 }
 
 /* Utility Classes */
@@ -276,6 +377,7 @@ body {
   background-color: var(--gray);
 }
 
+/* Utility Classes - Modern Theme */
 .text-primary {
   color: var(--primary);
 }
@@ -296,6 +398,45 @@ body {
   color: var(--gray);
 }
 
+/* Headings - Modern Theme */
+h1, h2, h3, h4, h5, h6 {
+  color: #000000;
+}
+
+/* Utility Classes - Retro Theme */
+[data-theme="retro"] .text-primary {
+  color: #00FF00;
+  text-shadow: 1px 1px #003300;
+}
+
+[data-theme="retro"] .text-secondary {
+  color: #00CC00;
+  text-shadow: 1px 1px #003300;
+}
+
+[data-theme="retro"] .text-accent {
+  color: #00FF00;
+  text-shadow: 1px 1px #003300;
+}
+
+[data-theme="retro"] .text-dark {
+  color: #00FF00;
+}
+
+[data-theme="retro"] .text-gray {
+  color: #006600;
+}
+
+/* Headings - Retro Theme */
+[data-theme="retro"] h1,
+[data-theme="retro"] h2,
+[data-theme="retro"] h3,
+[data-theme="retro"] h4,
+[data-theme="retro"] h5,
+[data-theme="retro"] h6 {
+  color: #00FF00;
+}
+
 .border-primary {
   border-color: var(--primary);
 }
@@ -305,21 +446,41 @@ body {
 }
 
 /* Scrollbar */
+/* Scrollbar - Modern Theme */
 ::-webkit-scrollbar {
   width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--retro-light);
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--retro-primary);
-  border: 2px solid #000;
+  background: var(--primary);
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--retro-secondary);
+  background: var(--primary-dark);
+}
+
+/* Scrollbar - Retro Theme */
+[data-theme="retro"] ::-webkit-scrollbar {
+  width: 16px;
+}
+
+[data-theme="retro"] ::-webkit-scrollbar-track {
+  background: #000000;
+  border: 2px solid #00FF00;
+}
+
+[data-theme="retro"] ::-webkit-scrollbar-thumb {
+  background: #00FF00;
+  border: 2px solid #000000;
+}
+
+[data-theme="retro"] ::-webkit-scrollbar-thumb:hover {
+  background: #00CC00;
 }
 
 /* ==================== */
@@ -488,7 +649,7 @@ body {
   transform: translateY(0);
 }
 
-/* Character Card 3D Effect */
+/* Character Card 3D Effect - Modern Theme */
 .character-card {
   perspective: 1000px;
   transform-style: preserve-3d;
@@ -506,7 +667,13 @@ body {
   transform: scale(1.2) rotate(10deg);
 }
 
-/* Episode Card 3D Effect */
+/* Character Card 3D Effect - Retro Theme */
+[data-theme="retro"] .character-card:hover {
+  transform: none;
+  border-color: #00CC00;
+}
+
+/* Episode Card 3D Effect - Modern Theme */
 .episode-card {
   perspective: 1000px;
   transform-style: preserve-3d;
@@ -524,10 +691,23 @@ body {
   transform: scale(1.1) rotate(-5deg);
 }
 
-/* Header Scroll Effect */
+/* Episode Card 3D Effect - Retro Theme */
+[data-theme="retro"] .episode-card:hover {
+  transform: none;
+  border-color: #00CC00;
+}
+
+/* Header Scroll Effect - Modern Theme */
 header.scrolled {
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Scroll Effect - Retro Theme */
+[data-theme="retro"] header.scrolled {
+  background: #000000;
+  border: 3px solid #00FF00;
+  box-shadow: none;
 }
 
 /* Particle Canvas */
