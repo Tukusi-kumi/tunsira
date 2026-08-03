@@ -12,10 +12,10 @@
 </head>
 <body class="min-h-screen bg-light">
   <!-- Header -->
-  <header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-lg transition-all duration-300" id="header">
+  <header class="fixed top-0 w-full z-50 transition-all duration-300" id="header">
     <nav class="container mx-auto px-4 py-4">
       <div class="flex justify-between items-center">
-        <a href="index.html" class="modern-title flex items-center gap-2 text-xl hover:scale-110 transition-transform duration-300">
+        <a href="index.html" class="modern-title flex items-center gap-2 text-xl">
           <span class="text-primary animate-spin-slow">★</span>
           ツンしら
           <span class="text-secondary animate-spin-slow">★</span>
@@ -36,7 +36,7 @@
       </button>
 
       <div class="text-center">
-        <div class="inline-block bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full mb-2 animate-scale-in hover:scale-110 transition-transform duration-300">
+        <div class="inline-block mb-2 animate-scale-in bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full hover:scale-110 transition-transform duration-300">
           <h2 id="episodeTitle" class="text-lg font-bold"></h2>
         </div>
         <div class="flex gap-2 justify-center" id="episodeIndicators">
@@ -87,6 +87,7 @@
     </div>
   </main>
 
+  <script src="theme.js"></script>
   <script src="novel.js"></script>
 </body>
 </html>
