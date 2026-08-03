@@ -14,58 +14,35 @@ const episodes = [
   { id: 4, title: '第四話　席替え', date: '2026-02-23', description: '運命の席替えと隣になった天原さん' },
   { id: 5, title: '第五話　休日の本屋', date: '2026-03-16', description: '本屋での星村さんとの遭遇' },
   { id: 6, title: '第六話　放課後の教室', date: '2026-04-20', description: '星村さんとの放課後の対面' },
+  { id: 7, title: '第七話　タイムリミット', date: '2026-08-04', description: '妹によるお姉ちゃんの秘密調査' },
 ];
 
-const newsItems = [
-  {
-    id: 1,
-    title: '第六話「放課後の教室」公開',
-    date: '2026-04-20',
-    content: '第六話「放課後の教室」を公開しました。'
-  },
-  {
-    id: 2,
-    title: 'サイトリニューアル',
-    date: '2026-04-15',
-    content: 'サイトをモダンなデザインにリニューアルしました。'
-  },
-  {
-    id: 3,
-    title: '第五話「休日の本屋」公開',
-    date: '2026-03-16',
-    content: '第五話「休日の本屋」を公開しました。'
-  },
-  {
-    id: 4,
-    title: '第四話「席替え」公開',
-    date: '2026-02-23',
-    content: '第四話「席替え」を公開しました。'
-  },
-  {
-    id: 5,
-    title: '第三話「初デート！？」公開',
-    date: '2026-01-18',
-    content: '第三話「初デート！？」を公開しました。'
-  },
-  {
-    id: 6,
-    title: '第二話「命令！？」公開',
-    date: '2025-12-31',
-    content: '第二話「命令！？」を公開しました。'
-  },
-  {
-    id: 7,
-    title: '第一話「あの子の秘密」公開',
-    date: '2025-12-31',
-    content: '第一話「あの子の秘密」を公開しました。'
-  },
-  {
-    id: 8,
-    title: 'サイトオープン',
-    date: '2025-12-25',
-    content: '「ツンしら」公式サイトをオープンしました。'
+let newsItems = [];
+
+// Load news from JSON file
+async function loadNews() {
+  try {
+    const response = await fetch('news.json');
+    newsItems = await response.json();
+  } catch (error) {
+    console.error('Failed to load news:', error);
+    // Fallback data
+    newsItems = [
+      {
+        id: 1,
+        title: '第六話「放課後の教室」公開',
+        date: '2026-04-20',
+        content: '第六話「放課後の教室」を公開しました。'
+      },
+      {
+        id: 2,
+        title: 'サイトリニューアル',
+        date: '2026-04-15',
+        content: 'サイトをモダンなデザインにリニューアルしました。'
+      }
+    ];
   }
-];
+}
 
 // Render Characters
 function renderCharacters() {
@@ -270,9 +247,12 @@ function initLoadingScreen() {
 }
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   // Initialize loading screen
   initLoadingScreen();
+  
+  // Load news from JSON file
+  await loadNews();
   
   renderCharacters();
   renderEpisodes();
