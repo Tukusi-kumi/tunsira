@@ -11,15 +11,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
   <body class="min-h-screen bg-light">
-  <!-- Loading Screen - 90s Retro (Green & Black) -->
-  <div id="loadingScreen" class="fixed inset-0 z-[100] bg-black flex items-center justify-center" style="border: 4px double #00FF00;">
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="fixed inset-0 z-[100] bg-black flex items-center justify-center">
     <div class="text-center">
-      <div class="text-6xl mb-4 animate-bounce" style="color: #00FF00;">★</div>
-      <h1 class="text-3xl font-bold mb-4" style="color: #00FF00; font-family: 'Press Start 2P', monospace;">ツンしら</h1>
-      <div class="w-64 h-4 bg-gray-800 overflow-hidden mx-auto" style="border: 2px solid #00FF00;">
-        <div id="loadingBar" class="h-full transition-all duration-300" style="width: 0%; background: #00FF00;" style="width: 0%"></div>
+      <div class="text-6xl mb-4 animate-bounce text-white">★</div>
+      <h1 class="text-3xl font-bold mb-4 text-white">ツンしら</h1>
+      <div class="w-64 h-4 bg-gray-800 overflow-hidden mx-auto rounded-full">
+        <div id="loadingBar" class="h-full transition-all duration-300 bg-white rounded-full" style="width: 0%"></div>
       </div>
-      <p class="mt-4 text-sm" style="color: #00FF00; font-family: 'VT323', monospace;">LOADING...</p>
+      <p class="mt-4 text-sm text-white">Loading...</p>
     </div>
   </div>
 
@@ -33,23 +33,25 @@
     </div>
   </div>
 
-  <!-- Header - 90s Retro (Green & Black) -->
-  <header class="fixed top-0 w-full z-50 transition-all duration-300" id="header" style="background: #000000; border-bottom: 3px solid #00FF00;">
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-white" id="header">
     <nav class="container mx-auto px-4 py-4">
       <div class="flex justify-between items-center">
-        <a href="index.html" class="modern-title flex items-center gap-2 text-2xl">
-          <span style="color: #00FF00;">★</span>
+        <a href="index.html" class="modern-title flex items-center gap-2 text-2xl text-primary">
+          <span>★</span>
           ツンしら
-          <span style="color: #00FF00;">★</span>
+          <span>★</span>
         </a>
 
         <div class="hidden md:flex space-x-8">
-          <a href="#story" class="font-semibold" style="color: #00FF00; text-decoration: underline;">ストーリー</a>
-          <a href="#characters" class="font-semibold" style="color: #00FF00; text-decoration: underline;">登場人物</a>
-          <a href="#episodes" class="font-semibold" style="color: #00FF00; text-decoration: underline;">エピソード</a>
+          <a href="#story" class="font-semibold text-primary hover:text-secondary transition-colors">ストーリー</a>
+          <a href="#characters" class="font-semibold text-primary hover:text-secondary transition-colors">登場人物</a>
+          <a href="#episodes" class="font-semibold text-primary hover:text-secondary transition-colors">エピソード</a>
+          <a href="#bonus" class="font-semibold text-primary hover:text-secondary transition-colors">おまけ</a>
+          <a href="https://forms.gle/vb42oZYdamnoHWfw8" target="_blank" class="font-semibold text-primary hover:text-secondary transition-colors">お問い合わせ</a>
         </div>
 
-        <button class="md:hidden" id="menuBtn" style="background: #000000; border: 2px solid #00FF00; padding: 0.5rem; color: #00FF00;">
+        <button class="md:hidden" id="menuBtn p-2 text-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -60,32 +62,32 @@
     </nav>
   </header>
 
-  <!-- Mobile Menu - 90s Retro (Green & Black) -->
-  <div id="mobileMenu" class="fixed inset-0 z-40 md:hidden hidden" style="background: #000000; border: 4px double #00FF00;">
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-40 md:hidden hidden bg-white">
     <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
-      <a href="#story" class="font-semibold mobile-menu-link" style="color: #00FF00; text-decoration: underline;">ストーリー</a>
-      <a href="#characters" class="font-semibold mobile-menu-link" style="color: #00FF00; text-decoration: underline;">登場人物</a>
-      <a href="#episodes" class="font-semibold mobile-menu-link" style="color: #00FF00; text-decoration: underline;">エピソード</a>
+      <a href="#story" class="font-semibold mobile-menu-link text-primary hover:text-secondary transition-colors">ストーリー</a>
+      <a href="#characters" class="font-semibold mobile-menu-link text-primary hover:text-secondary transition-colors">登場人物</a>
+      <a href="#episodes" class="font-semibold mobile-menu-link text-primary hover:text-secondary transition-colors">エピソード</a>
+      <a href="#bonus" class="font-semibold mobile-menu-link text-primary hover:text-secondary transition-colors">おまけ</a>
+      <a href="https://forms.gle/vb42oZYdamnoHWfw8" target="_blank" class="font-semibold mobile-menu-link text-primary hover:text-secondary transition-colors">お問い合わせ</a>
     </div>
   </div>
 
-  <!-- Hero Section - 90s Retro (Green & Black) -->
-  <section class="relative min-h-[35vh] sm:min-h-[40vh] flex items-center justify-center pt-16 sm:pt-20 overflow-hidden" style="background: #000000; border: 4px double #00FF00;">
+  <!-- Hero Section -->
+  <section class="relative min-h-[35vh] sm:min-h-[40vh] flex items-center justify-center pt-16 sm:pt-20 bg-primary">
     <div class="container mx-auto px-4 text-center relative z-10">
       <div class="mb-3 sm:mb-4">
-        <div class="text-4xl sm:text-5xl mb-2 animate-float" style="color: #00FF00;">★</div>
-        <h1 class="modern-title mb-2 animate-fade-in-up">
+        <div class="text-4xl sm:text-5xl mb-2 text-white">★</div>
+        <h1 class="modern-title mb-2 text-white" style="color: white !important; -webkit-text-fill-color: white !important; background: none !important;">
           ツンしら公式サイト
         </h1>
-        <div class="modern-marquee mb-3 sm:mb-4 animate-fade-in-up delay-200">
-          <div class="animate-marquee whitespace-nowrap">
-            <span>百合小説が好きな女子高生の恋愛</span>
-          </div>
+        <div class="mb-3 sm:mb-4 text-white">
+          <span>百合小説が好きな女子中学生の恋愛</span>
         </div>
       </div>
-      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-3 sm:mb-4 animate-fade-in-up delay-300">
-        <a href="#episodes">
-          <button class="modern-button flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 group">
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-3 sm:mb-4">
+        <a href="#episodes" class="w-full sm:w-auto">
+          <button class="modern-button w-full flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 group" style="background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%); box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3), 0 2px 8px rgba(0, 191, 255, 0.2);">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:animate-pulse">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
@@ -284,6 +286,22 @@
     </div>
   </section>
 
+  <!-- Bonus Section -->
+  <section id="bonus" class="modern-section relative z-10">
+    <div class="container mx-auto">
+      <div class="text-center mb-8 sm:mb-12">
+        <div class="inline-block bg-gradient-to-r from-primary to-secondary text-dark px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-4 hover:scale-110 transition-transform duration-300">
+          <h2 class="text-xl sm:text-2xl font-bold">おまけコーナー</h2>
+        </div>
+      </div>
+      <div class="modern-card p-12 text-center">
+        <div class="text-6xl mb-6">�</div>
+        <h3 class="text-2xl font-bold text-primary mb-4">工事中</h3>
+        <p class="text-gray">現在準備中です。もうしばらくお待ちください。</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="bg-gradient-to-r from-primary to-secondary text-white py-12 relative z-10">
     <div class="container mx-auto px-4">
@@ -306,7 +324,6 @@
     </div>
   </footer>
 
-  <script src="theme.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
