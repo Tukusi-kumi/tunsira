@@ -225,10 +225,13 @@ function initLoadingScreen() {
   
   if (!loadingScreen || !loadingBar) return;
   
+  // Disable scrolling while loading
+  document.body.style.overflow = 'hidden';
+  
   // Simulate loading progress
   let progress = 0;
   const interval = setInterval(() => {
-    progress += Math.random() * 30;
+    progress += Math.random() * 50;
     if (progress >= 100) {
       progress = 100;
       clearInterval(interval);
@@ -236,14 +239,16 @@ function initLoadingScreen() {
       // Hide loading screen after a short delay
       setTimeout(() => {
         loadingScreen.style.opacity = '0';
-        loadingScreen.style.transition = 'opacity 0.5s ease-out';
+        loadingScreen.style.transition = 'opacity 0.3s ease-out';
         setTimeout(() => {
           loadingScreen.style.display = 'none';
-        }, 500);
-      }, 300);
+          // Re-enable scrolling after loading screen is hidden
+          document.body.style.overflow = '';
+        }, 300);
+      }, 100);
     }
     loadingBar.style.width = progress + '%';
-  }, 200);
+  }, 50);
 }
 
 // Initialize
